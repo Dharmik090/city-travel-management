@@ -1,0 +1,118 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+
+<div class="booking p-5" style="margin-bottom: -3rem;">
+    <div class="row g-5 align-items-center justify-content-center" style="margin-top: 7rem; margin-bottom: -1rem;">
+        <div class="col-md-6">
+            <h1 class="text-white mb-4 text-center">Conformation</h1>
+            <div class="text-center p-4">
+                <div class="text-white d-flex border-bottom">
+                    <small class="flex-fill text-center border-end py-2"><i
+                            class="fa fa-map-marker-alt text-primary me-2"></i>{{ pack.city }}</small>
+                    <small class="flex-fill text-center border-end py-2"><i
+                            class="fa fa-calendar-alt text-primary me-2"></i>{{ pack.duration }} days</small>
+                    <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>
+                        {{ passengers|length }} Person</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table  text-white">
+                        <tbody>
+                            <tr>
+                                <th colspan="2"><strong>Departure</strong></th>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-calendar-alt text-primary me-2"></i>{{ pack.departure_date}}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-clock text-primary me-2"></i> {{ pack.departure_time }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ pack.departure_place }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6" style="border-left: 1px solid #ccc;">
+                    <table class="table  text-white">
+                        <tbody>
+                            <tr>
+                                <th colspan="2"><strong>Return</strong></th>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-calendar-alt text-primary me-2"></i> {{ pack.return_date }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-clock text-primary me-2"></i> {{ pack.return_time }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-map-marker-alt text-primary me-2"></i> {{ pack.return_place }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+
+            <h3 class="mb-0  text-white text-center">Passengers</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table  text-white">
+                        <tbody>
+                            <tr>
+                                <th colspan="2"><strong>Name</strong></th>
+                            </tr>
+                            {% for pass in passengers %}
+                            <tr>
+                                <td><i class="fa fa-user text-primary me-2"></i> {{pass.name}}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2" style="border-left: 1px solid #ccc;">
+                    <table class="table  text-white">
+                        <tbody>
+                            <tr>
+                                <th colspan="2"><strong>Age</strong></th>
+                            </tr>
+                            {% for pass in passengers %}
+                            <tr>
+                                <td> {{ pass.age }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+            <h3 class="mb-0  text-white text-center">Total Price : {{ ticket.total_price }} Rs.</h3>
+
+            <br><br>
+            <div class="col-12 text-center bg-white">
+                <form class="btn btn-outline-light w-100 py-3" action="{% url 'success' %}" method="POST">
+                    {% csrf_token %}
+                    <!-- RAZORPAY INTEGRATION HERE -->
+                    <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_6dq9f5n25OyVzT"
+                        data-amount="{{ ticket.total_price }} * {{ 100 }}" data-currency="INR" data-order_id="{{ payment.id }}"
+                        data-buttontext="Pay Now" data-name="Acme Corp"
+                        data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+                        data-image="https://example.com/your_logo.jpg" data-prefill.name="{{ request.session.username }}"
+                        data-prefill.email="{{ request.session.email }}" data-theme.color="#F37254"></script>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,127 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+
+<!-- Trip Detail Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title bg-white text-center text-primary px-3" style="margin-top: 7rem;">Trip Details</h5>
+        </div>
+
+        <div class="row justify-content-center" style="margin-top: 2rem !important; margin-bottom: -2rem !important;">
+            <div class="col-lg-8">
+                <div class="pack-view">
+                    <div>
+                        <img class="img-fluid" src="{{ package.thumbnail.url }}" height="100" width="100%" alt="">
+                    </div>
+
+                    <div class="text-center p-4">
+                        <h3 class="mb-0">Trip Name : {{ package.trip_name }}</h3><br>
+
+                        <div class="text-center p-4">
+                            <h4 class="mb-0">Attractions</h4><br>
+                            {% for attraction in attractions %}
+                            <img class="img-fluid" src="{{ attraction.att_imgs.url }}" style="height: 20rem;"
+                                width="100%">
+                            <h6>{{ attraction.att_name }}</h6>
+                            {% endfor %}
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="d-flex border-bottom">
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-map-marker-alt text-primary me-2"></i>{{ package.city }}</small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-calendar-alt text-primary me-2"></i>{{ package.duration }} Days</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>
+                                    {{ package.capacity }} Person</small>
+                            </div>
+                        </div>
+
+                        <!-- End Photo Gallery -->
+                        <div class="text-center p-4">
+                            <div style="display: inline-block; vertical-align: top; margin-left: 10px;">
+                                <h5 class="mb-0">Agency : {{ package.agency_name.agency_name }}</h5>
+                            </div><br><br>
+                            <div style="display: inline-block; vertical-align: top;">
+                                <img src="{{ package.agency_name.agency_logo.url }}" alt="agency"
+                                    style="max-width: 60px;">
+                            </div>
+                        </div>
+                        <h3 class="mb-0">{{ package.price }} Rs.</h3>
+                        <div class="mb-3">
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                        </div>
+                        <!-- //date,time,place -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="2"><strong>Departure</strong></th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-calendar-alt text-primary me-2"></i>
+                                                {{ package.departure_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-clock text-primary me-2"></i>
+                                                {{ package.departure_time }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                                {{ package.departure_place }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6" style="border-left: 1px solid #ccc;">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="2"><strong>Return</strong></th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-calendar-alt text-primary me-2"></i>
+                                                {{ package.return_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-clock text-primary me-2"></i> {{ package.return_time }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                                {{ package.return_place }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- //date,time,place -->
+
+                        <p>{{ package.extra_info }}</p>
+
+                        <div class="d-flex justify-content-center mb-2">
+                            <a href="{% url 'packages' %}" class="btn btn-sm btn-primary px-3 border-end"
+                                style="border-radius: 30px 0 0 30px;">Back to Packages</a>
+                            <a href="{% url 'booking' trip_name=package.trip_name %}"
+                                class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% include 'footer.html' %}
