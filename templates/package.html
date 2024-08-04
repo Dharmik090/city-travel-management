@@ -1,0 +1,125 @@
+{% load static %}
+{% include 'header.html' %}
+
+<!-- Package Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3" style="margin-top: 8rem;">Packages</h6>
+            {% if agency_pack %}
+            <h1 class="mb-5" style="margin-top: 0.5rem;">My Packages</h1>
+            {% else %}
+            <h1 class="mb-5" style="margin-top: 0.5rem;">Awesome Packages</h1>
+            {% endif %}
+        </div>
+
+
+        <div class="row g-4 justify-content-center">
+            {% for pack in packages %}
+            <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="package-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ pack.thumbnail.url }}" alt="">
+                    </div>
+                    {% if agency_pack %}
+                    <div class="d-flex border-bottom">
+                        <small class="flex-fill text-center border-end py-2"><a href="{% url 'edit_package' trip_name=pack.trip_name %}" 
+                            class="edit" data-toggle="modal"><i class="fa fa-edit text-primary me-2"> &nbsp;&nbsp; EDIT</i></a></small>
+                        <small class="flex-fill text-center border-end py-2"><a href="{% url 'del_package' trip_name=pack.trip_name %}" 
+                            class="delete" data-toggle="modal"><i class="fa fa-trash text-danger">  &nbsp;&nbsp;REMOVE</i></a></small>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex border-bottom">
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>
+                            {{ pack.city }}</small>
+                        <small class="flex-fill text-center border-end py-2"><i
+                                class="fa fa-calendar-alt text-primary me-2"></i>{{ pack.duration }}</small>
+                        <small class="flex-fill text-center py-2"><i 
+                            class="fa fa-user text-primary me-2"></i>{{ pack.capacity }} Person</small>
+                    </div>
+                    <div class="text-center p-4">
+                        <h3 class="mb-0">{{ pack.price }}Rs.</h3>
+                        <div class="mb-3">
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                        </div>
+                        <p style="height: 100px;">{{ pack.extra_info }}</p>
+
+                        <div class="d-flex justify-content-center mb-2">
+                            <a href="{% url 'view_package' trip_name=pack.trip_name %}" 
+                            class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">View Package</a>
+                            <a href="{% url 'booking' trip_name=pack.trip_name %}" 
+                            class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<!-- Package End -->
+
+{% if request.session.agency_name %}
+<div style="text-align: center;">
+    <a href="{% url 'add_package' %}" class="btn btn-primary rounded-pill py-2 px-4">+</a>
+</div>
+<br>
+<div style="text-align: center">
+    <a href="{% url 'agency_packages' agency_name=request.session.agency_name %}" class="btn btn-primary rounded-pill py-2 px-4">My package</a>
+</div>
+{% endif %}
+
+
+<!-- Process Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Process</h6>
+            <h1 class="mb-5">3 Easy Steps</h1>
+        </div>
+        <div class="row gy-5 gx-4 justify-content-center">
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-globe fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Choose A Destination</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-dollar-sign fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Pay Online</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-plane fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Travel Today</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Process Start -->
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,51 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+<div class="container-xxl py-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:7rem;margin-bottom: -2rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+               
+                <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="text-white mb-4 text-center">Registration</h1>
+                    
+                    <div class="position-relative w-70 mx-auto animated slideInDown">
+                        <p class="form-control border-0 rounded-pill w-100 text-dark placeholder=">Traveler</p>
+                        <button type="button" onclick="window.location.href='uregistration';"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: -3px;">Go !</button>
+                    </div>
+                    <div class="position-relative w-70 mx-auto animated slideInDown">
+                        <p class="form-control border-0 rounded-pill w-100 text-dark placeholder=">Agency</p>
+                        <button type="button" onclick="window.location.href ='aregistration';"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: -3px;">Go !</button>
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="text-white mb-4 text-center">Login</h1>
+                    
+                    <div class="position-relative w-70 mx-auto animated slideInDown">
+                        <p class="form-control border-0 rounded-pill w-100 text-dark placeholder=">Traveler</p>
+                        <button type="button" onclick="window.location.href='ulogin';"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: -3px;">Go !</button>
+                    </div>
+                    <div class="position-relative w-70 mx-auto animated slideInDown">
+                        <p class="form-control border-0 rounded-pill w-100 text-dark placeholder=">Agency</p>
+                        <button type="button" onclick="window.location.href ='alogin';"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: -3px;">Go !</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

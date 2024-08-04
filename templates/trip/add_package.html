@@ -1,0 +1,70 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:7rem;margin-bottom: -2rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+                <div class="col-md-6">
+                    {% if is_edit %}
+                    <h1 class="text-white mb-4">Update Trip plan</h1>
+                    {% else %}
+                    <h1 class="text-white mb-4 text-center">Add A Trip plan</h1>
+                    {% endif %}
+                    <form method="post" enctype="multipart/form-data">
+                        <!-- {% for message in messages %}
+                        <h2 style="color:red">{{ message }}</h2>
+                        {% endfor %} -->
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        {% if field.name == 'agency_name' or field.name == 'duration' %}
+                        <div class="d-none">
+                            {{ field }}
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {% if field.name == 'departure_date' %}
+                            <p style="color:white">Departure Date :</p>
+                            {% endif %}
+                            {% if field.name == 'return_date' %}
+                            <p style="color:white">Return Date :</p>
+                            {% endif %}
+                            {% if field.name == 'departure_time' %}
+                            <p style="color:white">Departure Time :</p>
+                            {% endif %}
+                            {% if field.name == 'return_time' %}
+                            <p style="color:white">Return Time :</p>
+                            {% endif %}
+                            {% if field.name == 'thumbnail' %}
+                            <p style="color:white">Trip Thumbnail :</p>
+                            {% endif %}
+
+                            {{field}}
+                        </div>
+                        {% endif %}
+                        <br>
+                        {% endfor %}
+
+
+                        {% if is_edit %}
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Update Now</button>
+                        </div>
+                        {% else %}
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Add Now</button>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

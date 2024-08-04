@@ -1,0 +1,116 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:8rem;margin-bottom: -1rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+
+                <div class="col-md-6">
+                    {% if is_edit %}
+                    <h1 class="text-white mb-4">Update Passenger</h1>
+                    {% else %}
+                    <h1 class="text-white mb-4 text-center">Add Passengers</h1>
+                    {% endif %}
+
+                    {% for message in messages %}
+                    <li style="color:red">{{ message }}</li>
+                    {% endfor %}
+                    <form method="POST" enctype="multipart/form-data" class="mx-auto">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        {% if field.name == 'ticket_id' %}
+                        <div class="d-none">
+                            {{ field }}
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div><br>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if is_edit %}
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Update</button>
+                        </div>
+                        {% else %}
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Add</button>
+                        </div>
+                        {% endif %}
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2><b>Passengers</b></h2>
+                </div>
+
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pass in passengers %}
+                <tr>
+
+                    <td>{{ pass.name }}</td>
+                    <td>{{ pass.age }}</td>
+                    <td>
+                        <a href="edit_passenger/{{ pass.id }}" class="edit" data-toggle="modal"><i
+                                class="fa fa-edit text-primary me-2"></i>
+                        </a>
+                        <a href="del_passenger/{{ pass.id }}" class="delete" data-toggle="modal"><i
+                                class="fa fa-trash text-danger"></i>
+                        </a>
+                    </td>
+                    <td>{{ trip_price }}</td>
+                </tr>
+                {% endfor %}
+                <tr style="border:2px solid black;">
+                    <td></td>
+                    <td style="color: black;">TOTAL</td>
+                    <td></td>
+                    <td style="color: black;">{{ ticket.total_price }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">
+            <a href="{% url 'payment' %}" class="btn btn-primary rounded-pill py-2 px-4">Book</a>
+        </div>
+        <div class="clearfix">
+            <div class="hint-text">Showing <b>{{ passengers |length }}</b> entries</div>
+            <ul class="pagination">
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include 'footer.html' %}

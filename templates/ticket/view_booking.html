@@ -1,0 +1,32 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+
+<div class="container-xxl py-5   wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:8rem;margin-bottom: -1rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+
+                <div class="col-md-6">
+                    <h1 class="text-white mb-4 text-center">My Bookings</h1>
+
+                    {% for ticket in tickets %}
+                    <form action="{% url 'view_ticket' %}" method="POST" enctype="multipart/form-data" class="mx-auto">
+                        {% csrf_token %}
+                        <input type="text" name="ticket_id" value="{{ ticket.id }}" class="d-none">
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">View</button>
+                        </div>
+                        <br><br>
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

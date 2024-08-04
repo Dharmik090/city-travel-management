@@ -1,0 +1,217 @@
+{% load static %}
+{% include 'header.html' %}
+
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+
+                {% if request.session.username %}
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Welcome, {{ request.session.username }}</h1>
+                {% endif %}
+                {% if request.session.agency_username %}
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Welcome , {{ request.session.agency_username
+                    }}</h1>
+                <h2 class="display-3 text-white mb-3 animated slideInDown">"Unlock Agency Success: Profit and Growth,
+                    Hand in Hand." </h2>
+                {% endif %}
+
+
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Vacation With Us</h1>
+                <p class="fs-4 text-white mb-4 animated slideInDown">Search City or Agency</p>
+                {% if messages %}
+                    {% for message in messages %}
+                    <p style="color:red">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <div class="position-relative w-75 mx-auto animated slideInDown">
+                    <form action="{% url 'search' %}" method="POST">
+                        {% csrf_token %}
+                        <input class="border-0 rounded-pill w-100 py-3 ps-4 pe-5" name="search_name" type="text"
+                            placeholder="Enter Agency name of City name">
+                        <button type="submit"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: 7px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Navbar & Hero End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="img-fluid position-absolute w-100 h-100" src="{% static 'img/gtour.jpg' %}" alt=""
+                        style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                <h1 class="mb-4">Welcome to <span class="text-primary">Tourist</span></h1>
+                <p class="mb-4">We have varied experience with global networking travel management companies. We believe
+                    that all the information is best derived from direct experience and local knowledge.
+                    So, at present we are in the process of personally visiting the destinations to check, improve and
+                    expand on the content.</p>
+                <p class="mb-4">Broad expertise in the local travel market, Client-first approach to business.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- About End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+            <h1 class="mb-5">Our Services</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                        <h5>Natural, Cultural and Manmade Attractions</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
+                        <h5>Transportation</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                        <h5>Travel Guides</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-cog text-primary mb-4"></i>
+                        <h5>Security</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+<!-- Destination Start -->
+<div class="container-xxl py-5 destination">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Destination</h6>
+            <h1 class="mb-5">Popular Destination</h1>
+        </div>
+        <div class="row g-3">
+            <div class="col-lg-7 col-md-6">
+                <div class="row g-3">
+                    <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                        <a class="position-relative d-block overflow-hidden"
+                            href="{% url 'view_package' trip_name='Temple Trip' %}">
+                            <img class="img-fluid" src="{% static 'img/Dwarkadhish.jpg' %}" alt=""
+                                style="object-fit: fill;">
+                            <div class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">
+                                Dwarka</div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                        <a class="position-relative d-block overflow-hidden"
+                            href="{% url 'view_package' trip_name='Nawanagar Trip' %}">
+                            <img class="img-fluid" src="{% static 'img/Ranmal Lake.jpg' %}" alt=""
+                                style="object-fit: fiil;">
+                            <div class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">
+                                Jamnagar</div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
+                        <a class="position-relative d-block overflow-hidden"
+                            href="{% url 'view_package' trip_name='Rann Utsav' %}">
+                            <img class="img-fluid" src="{% static 'img/Kachchh.jpg' %}" alt=""
+                                style="object-fit: contain; width: 100%;">
+                            <div class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">
+                                Kachchh</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                <a class="position-relative d-block h-100 overflow-hidden"
+                    href="{% url 'view_package' trip_name='Junagadh Tourism' %}">
+                    <img class="img-fluid position-absolute w-100 h-100" src="{% static 'img/Sasan.jpg' %}" alt=""
+                        style="object-fit: cover;">
+                    <div class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">Sasan Gir
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Destination Start -->
+
+
+<!-- Process Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Process</h6>
+            <h1 class="mb-5">3 Easy Steps</h1>
+        </div>
+        <div class="row gy-5 gx-4 justify-content-center">
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-globe fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Choose A Destination</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-dollar-sign fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Pay Online</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                        style="width: 100px; height: 100px;">
+                        <i class="fa fa-plane fa-3x text-white"></i>
+                    </div>
+                    <h5 class="mt-4">Travel Today</h5>
+                    <hr class="w-25 mx-auto bg-primary mb-1">
+                    <hr class="w-50 mx-auto bg-primary mt-0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Process Start -->
+
+{% include 'footer.html' %}

@@ -1,0 +1,136 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" id="ticket">
+    <div class="container w-75">
+
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="margin-top:8rem;margin-bottom: -1rem;">
+            <h1 class="mb-5">Make sure to download ticket</h1>
+        </div>
+
+        <div class="p-5" style="background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7));">
+            <div class="row g-5 align-items-center">
+                <div class="col-md-12">
+                    <h1 class="text-white text-center mb-4">City : {{ ticket.trip_name.city }}</h1>
+                    <h3 class="text-white mb-4">User</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p class="form-control text-dark bg-white">{{ ticket.username.username }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="form-control text-dark bg-white">{{ ticket.username.email }}</p>
+                        </div>
+                        
+                        <h3 class="text-white mb-0">Agency</h3>
+                        <div class="col-md-6">
+                            <p class="form-control text-dark bg-white">{{ ticket.trip_name.agency_name.agency_name }}</p>
+                        </div>
+                        
+                        <h3 class="text-white mb-0">Departure</h3>
+                        <div class="col-md-12">
+                            <p class="form-control text-dark bg-white">{{ ticket.trip_name.departure_time }},
+                                {{ ticket.trip_name.departure_date }}, From {{ ticket.trip_name.departure_place }}</p>
+                        </div>
+
+                        <h3 class="text-white mb-0">Return</h3>
+                        <div class="col-md-12">
+                            <p class="form-control text-dark bg-white">{{ ticket.trip_name.return_time }},
+                                {{ ticket.trip_name.return_date }}, To {{ ticket.trip_name.return_place }}</p>
+                        </div>
+
+                        <h3 class="text-white mb-0">Passangers</h3>
+                        <table class="passenger-table text-dark">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pass in passenger %}
+                                <tr>
+                                    <td>{{ pass.name }}</td>
+                                    <td>{{ pass.age }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        
+                        <h3 class="text-white mb-0 mt-5">Total Price</h3>
+                        <div class="col-md-2">
+                            <p class="form-control text-dark bg-white">{{ ticket.total_price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<div class="row g5 align-items-center">
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="col-md-6">
+        </div>
+    </div>
+</div> -->
+
+<button onclick="window.location.href='javascript:void(0)';" class="abc d-flex justify-content-center btn btn-outline-light w-50 py-3 booking" type="submit" style="color:white">Download Now</button>
+
+
+
+<a  href="javascript:void(0)" class="btn-download">Download PDF  </a>
+
+
+
+<script src="{% static 'js/jspdf.debug.js' %}"></script>
+<script src="{% static 'js/html2canvas.min.js' %}"></script>
+<script src="{% static 'js/html2pdf.min.js' %}"></script>
+
+
+<script>
+
+    const options = {
+      margin: 0.5,
+      filename: 'ticket.pdf',
+      image: { 
+        type: 'jpeg', 
+        quality: 500
+      },
+      html2canvas: { 
+        scale: 1 
+      },
+      jsPDF: { 
+        unit: 'in', 
+        format: 'letter', 
+        orientation: 'portrait' 
+      }
+    }
+    
+    $('.abc').click(function(e){
+      e.preventDefault();
+      const element = document.getElementById('ticket');
+      html2pdf().from(element).set(options).save();
+      console.log(xxx);
+    });
+
+
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script>
+
+
+
+
+
+{% include 'footer.html' %}

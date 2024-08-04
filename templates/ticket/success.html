@@ -1,0 +1,29 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:8rem;margin-bottom: -1rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+
+                <div class="col-md-6">
+                    <h1 class="text-white mb-4 text-center">Congratulation</h1>
+                    
+                    <div class="col-12 modal-body">
+                        <h4 class="text-white text-center">Your booking has been confirmed.</h4>
+                    </div>
+                    
+                    <div class="col-12">
+                        <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                            onclick="window.location.href='view_ticket'">View Ticket</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}

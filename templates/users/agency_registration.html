@@ -1,0 +1,38 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:8rem;margin-bottom: -1rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+
+                <div class="col-md-6">
+                    <h1 class="text-white mb-4 text-center">Agency Registration</h1>
+                    {% for message in messages %}
+                    <li style="color:red">{{ message }}</li>
+                    {% endfor %}
+                    <form method="POST" enctype="multipart/form-data" class="mx-auto">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            {% if field.name == 'agency_logo' %}
+                            <p style="color:white">Agency Logo :</p>
+                            {% endif %}
+                            {{field}}
+                        </div><br>
+                        {% endfor %}
+                        <div class="col-12">
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Register</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,97 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container w-75">
+        <div class="booking p-5" style="margin-top:8rem;margin-bottom: -1rem;">
+            <div class="row g-5 align-items-center justify-content-center">
+
+                <div class="col-md-6">
+
+                    <form method="POST" enctype="multipart/form-data" class="mx-auto">
+                        {% csrf_token %}
+                        {% if is_edit %}
+                        <h1 class="text-white mb-4 text-center">Update Attraction</h1>
+                        {% else %}
+                        <h1 class="text-white mb-4 text-center">Add Attraction</h1>
+                        {% endif %}
+
+                        <div class="d-none">
+                            {{ form.trip_name }}
+                        </div>
+                        {{ form.att_name }} <br>
+                        {{ form.att_imgs }}
+                        <br><br>
+
+                        <div class="col-12">
+                            {% if is_edit %}
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Update</button>
+                            {% else %}
+                            <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
+                                type="submit">Add</button>
+                            {% endif %}
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2><b>Attractions</b></h2>
+                </div>
+
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attraction in attractions %}
+                <tr>
+
+                    <td style="text-align: center;">
+                        <img style="border: 2.5px solid #86B817;" src="{{ attraction.att_imgs.url }}" alt="Attraction img"
+                            height="100" width="200">
+                    </td>
+                    <td>{{ attraction.att_name }}</td>
+                    <td>
+                        <a href="edit_attraction/{{ attraction.id }}" class="edit" data-toggle="modal"><i
+                                class="fa fa-edit text-primary me-2"></i>
+                        </a>
+                        <a href="del_attraction/{{ attraction.id }}" class="delete" data-toggle="modal"><i
+                                class="fa fa-trash text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="clearfix">
+            <div class="hint-text">Showing <b>{{ attractions|length }}</b> entries</div>
+            <ul class="pagination">
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
