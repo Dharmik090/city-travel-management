@@ -16,6 +16,7 @@
                         {% csrf_token %}
                         <input type="text" name="ticket_id" value="{{ ticket.id }}" class="d-none">
                         <div class="col-12">
+                            <h3 class="text-white">{{ ticket.trip_name.city }} : {{ ticket.trip_name.departure_date }}</h3>
                             <button class="btn btn-outline-light w-100 py-3" style="color: black; background:white;"
                                 type="submit">View</button>
                         </div>
