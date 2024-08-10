@@ -1,4 +1,5 @@
 import razorpay,random,string
+from django.contrib import messages
 
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -84,6 +85,10 @@ def payment(request):
     ticket = Ticket.objects.get(pk=request.session['ticket_id'])
     passengers = Passenger.objects.filter(ticket_id=ticket.id)
     
+    if passengers.__len__() == 0:
+        messages.error(request,'Add valid passengers')
+        return redirect('add_passenger')
+
     client = razorpay.Client(auth=('rzp_test_6dq9f5n25OyVzT', 'YWdWCxu9BKgiZ97OqqTYo5Dg'))
     payment = client.order.create({'amount':ticket.total_price*100,'currency':'INR','payment_capture':'1'})
     
