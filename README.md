@@ -42,7 +42,7 @@ To set up this project locally, follow these steps:
    git clone https://github.com/Dharmik090/city-travel-management.git
    cd city-travel-management
 
-2. **Install required packages**
+2. **Install required packages**<br>
 Install Dependencies Navigate to the project directory and install the required Python packages:
     ```bash
     pip install -r requirements.txt
