@@ -59,4 +59,4 @@ Run the Application Start the application by running:
     ```
 
     Access the Application Open your web browser and go to:
-    http://localhost:5000
+    http://127.0.0.1:8000/
