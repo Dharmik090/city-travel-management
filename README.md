@@ -35,7 +35,7 @@ To set up this project locally, follow these steps:
 - Python 3.x
 - Git
 
-### Steps
+### Installation steps
 
 1. **Clone the Repository**
    ```bash
