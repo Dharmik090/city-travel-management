@@ -38,21 +38,25 @@ To set up this project locally, follow these steps:
 ### Steps
 
 1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/Dharmik090/city-travel-management.git
-   cd city-travel-management
+    ```bash
+    git clone https://github.com/Dharmik090/city-travel-management.git
+    cd city-travel-management
+    ```
 
 2. **Install required packages**<br>
 Install Dependencies Navigate to the project directory and install the required Python packages:
     ```bash
     pip install -r requirements.txt
+    ```
 
-3. **Create local database**:
+3. **Create local database**<br>
 Execute city_travel_management.sql in MySQL
 
-4. **Run Application**
+4. **Run Application**<br>
 Run the Application Start the application by running:
     ```bash
     python manage.py runserver
-Access the Application Open your web browser and go to:
-http://localhost:5000
+    ```
+
+    Access the Application Open your web browser and go to:
+    http://localhost:5000
