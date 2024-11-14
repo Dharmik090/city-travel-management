@@ -3,21 +3,21 @@
 A City Travel Management application designed to help users plan city trips efficiently by connecting travelers with agencies. The application provides a seamless experience for location search, booking travel packages, and managing itineraries.
 
 ## Home Page
-![Main Interface](./images/home.png)
+![Main Interface](./static/img/home.png)
 ## Agecy Packages
-![Agency Packages](./images/packages.png)
+![Agency Packages](./static/img/packages.png)
 ## View Package details
-![View Package](./images/package.png)
+![View Package](./static/img/package.png)
 ## Add passenger for booking
-![Add Passenger](./images/add_passanger.png)
+![Add Passenger](./static/img/add_passanger.png)
 ## Booking Confirmation
-![Confirm Booking](./images/confirmticket.png)
+![Confirm Booking](./static/img/confirmticket.png)
 ## RazorPay Payment
-![RazorPay Payment](./images/razorpay.png)
+![RazorPay Payment](./static/img/razorpay.png)
 ## View Bookings
-![View Bookings](./images/bookings.png)
+![View Bookings](./static/img/bookings.png)
 ## View Ticket
-![View Ticket](./images/ticket.png)
+![View Ticket](./static/img/ticket.png)
 
 ## Features
 
