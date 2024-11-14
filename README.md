@@ -44,13 +44,15 @@ To set up this project locally, follow these steps:
 
 2. **Install required packages**
 Install Dependencies Navigate to the project directory and install the required Python packages:
-pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
 
-3. **Create local database**
-Run city_travel_management.sql in MySQL
+3. **Create local database**:
+Execute city_travel_management.sql in MySQL
 
 4. **Run Application**
 Run the Application Start the application by running:
-python manage.py runserver
+    ```bash
+    python manage.py runserver
 Access the Application Open your web browser and go to:
 http://localhost:5000
